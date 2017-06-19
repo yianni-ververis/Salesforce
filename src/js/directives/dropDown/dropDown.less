@@ -1,0 +1,41 @@
+@color-green: #77b62a;
+@color-gray: #DDDDDD;
+
+.drop-down-directive {	
+	display: inline-block;
+	.dropdown-menu {
+		min-width: 200px;
+		.open,
+		.selected,
+		.deselected {
+			-o-transition:.5s;
+			-ms-transition:.5s;
+			-moz-transition:.5s;
+			-webkit-transition:.5s;
+		}
+		.selected,
+		.deselected:hover,
+		.open:hover {
+			color: white;
+			background-color: @color-green;
+		}
+		.selected:hover,
+		.open {
+			color: black;
+			background-color: white;
+		}
+		.deselected {
+			color: black;
+			background-color: @color-gray;
+		}
+	}
+	.scrollable-menu {
+		height: auto;
+		overflow-x: hidden;
+		z-index: 9999999;
+		max-height: 200px;
+	}
+	.dropdown-item {
+		margin-bottom: 1px;
+	}
+}

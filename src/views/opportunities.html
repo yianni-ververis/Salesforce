@@ -1,0 +1,143 @@
+<section id="main">
+	<div class="container">
+		<div class="row filters hidden-sm-down">
+			<div class="col-md-12">
+				<drop-down dimension="'Account Billing Country'" id="Country" title="Countries" selected-on-title="true" multiple-selections="true"
+				 listen-to-selections="true" keep-open="true"></drop-down>
+				<drop-down dimension="'User Full Name'" id="Salespeople" title="All Sales People" selected-on-title="true" multiple-selections="true"
+				 listen-to-selections="true" keep-open="true"></drop-down>
+				<drop-down dimension="'Opportunity Type'" id="OppTypes" title="All Opp Types" selected-on-title="true" multiple-selections="true"
+				 listen-to-selections="true" keep-open="true"></drop-down keep-open="true">
+				<drop-down dimension="'Product Name'" id="Products" title="All Products" selected-on-title="true" multiple-selections="true"
+				 listen-to-selections="true" keep-open="true"></drop-down keep-open="true">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="v title-1 color-blue">OPPORTUNITIES</div>
+			</div>
+			<div class="col-md-6 text-md-right radio-group padding-top-40">
+				<div class="v text-3 padding-top-10"><strong>View by: </strong></div>
+				<div class="v text-3 padding-top-10"><input type="radio" ng-model="stackedBar" ng-value="1"> Number of deals </div>
+				<div class="v text-3 padding-top-10"><input type="radio" ng-model="stackedBar" ng-value="2"> Value of deals</div>
+			</div>
+		</div>
+		<div class="row no-margin-padding-top-bottom">
+			<div class="col-md-12 no-margin-padding-left-right">
+				<get-object qvid="'kaHbZ'" id="kaHbZ" height="20" header="false" ng-if="stackedBar==1"></get-object>
+				<get-object qvid="'TeQw'" id="TeQw" height="20" header="false" ng-if="stackedBar==2"></get-object>
+			</div>
+		</div>
+		<div class="row no-margin-padding-top-bottom">
+			<div class="col-md-12 padding-top-20">
+				<div class="v title-3 color-gray-light stack">
+					OPEN OPPS:
+					<kpi expression="num(Sum({<[Opportunity Triphase]={'OPEN'}>} Opportunity_Count),'###,###,###')" ng-if="stackedBar==1"></kpi>
+					<kpi expression="num(Sum({<[Opportunity Triphase]={'OPEN'}>} [Opportunity Amount]),'##,###,###')" ng-if="stackedBar==2"></kpi>
+				</div>
+				<div class="v title-4 color-green stack">
+					CLOSED WON OPPS:
+					<kpi expression="num(Sum({<[Opportunity Won/Lost]={'WON'}, [Opportunity Closed_Flag]={1}>} Opportunity_Count),'###,###,###')"
+					 ng-if="stackedBar==1"></kpi>
+					<kpi expression="num(Sum({<[Opportunity Won/Lost]={'WON'}, [Opportunity Closed_Flag]={1}>} [Opportunity Amount]),'$###,###,###')"
+					 ng-if="stackedBar==2"></kpi>
+				</div>
+				<div class="v title-4 color-pink stack">
+					CLOSED LOST APPS:
+					<kpi expression="num(Sum({<[Opportunity Won/Lost]={'LOST'}, [Opportunity Closed_Flag]={1}>} Opportunity_Count),'###,###,###')"
+					 ng-if="stackedBar==1"></kpi>
+					<kpi expression="num(Sum({<[Opportunity Won/Lost]={'LOST'}, [Opportunity Closed_Flag]={1}>} [Opportunity Amount]),'$###,###,###')"
+					 ng-if="stackedBar==2"></kpi>
+				</div>
+				<div class="v title-3 color-gray-dark stack hidden-sm-down"> | </div>
+				<div class="v title-3 color-blue stack">
+					WIN RATE:
+					<kpi expression="num(Sum({<[Opportunity Won/Lost] = {'WON'}>} Opportunity_Count)	/Sum({<[Opportunity Is Closed?]={'true'}>} Opportunity_Count), '##%')"></kpi>
+				</div>
+			</div>
+		</div>
+
+		<div class="row padding-top-20">
+			<div class="col-md-4 text-md-left tab left hidden-sm-down" ng-class="{'active': tab==0}" ng-click="selectTab(0)">
+				<span class="v title-3 color-blue">OPPORTUNITY OVER TIME</span>
+			</div>
+			<div class="col-md-4 text-md-center tab center hidden-sm-down" ng-class="{'active': tab==1}" ng-click="selectTab(1)">
+				<span class="v title-3 color-blue">OPPORTUNITY PIPELINE</span>
+			</div>
+			<div class="col-md-4 text-md-right tab right hidden-sm-down" ng-class="{'active': tab==2}" ng-click="selectTab(2)">
+				<span class="v title-3 color-blue">OPPORTUNITY BY PROBABILITY</span>
+			</div>
+			<div class="col-md-4tab right hidden-md-up">
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+					 aria-expanded="false">
+						{{mobileSelected}}
+					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" href ng-click="selectTab(0);mobileSelected='OPPORTUNITY OVER TIME'">OPPORTUNITY OVER TIME</a>
+						<a class="dropdown-item" href ng-click="selectTab(1);mobileSelected='OPPORTUNITY PIPELINE'">OPPORTUNITY PIPELINE</a>
+						<a class="dropdown-item" href ng-click="selectTab(2);mobileSelected='OPPORTUNITY BY PROBABILITY'">OPPORTUNITY BY PROBABILITY</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" ng-if="tab==0">
+			<div class="col-md-3">
+				<span class="v title-4 color-gray">ALL OPPORTUNITIES OVER TIME</span>
+			</div>
+			<div class="col-md-5">
+				<get-object qvid="'mmJPW'" id="mmJPW" height="19" width="100" header="false"></get-object>
+				<get-object qvid="'PRZGjK'" id="PRZGjK" height="19" header="false"></get-object>
+			</div>
+			<div class="col-md-4 text-md-right radio-group">
+				<div class="v text-3"><strong>View by: </strong></div>
+				<div class="v text-3"><input type="radio" ng-model="type" ng-value="0" ng-change="selectType(0)"> Number of deals </div>
+				<div class="v text-3"><input type="radio" ng-model="type" ng-value="1" ng-change="selectType(1)"> Value of deals</div>
+			</div>
+		</div>
+		<div class="row" ng-if="tab==1">
+			<div class="col-md-3">
+				<span class="v title-4 color-gray">ALL OPPORTUNITIES PIPELINE</span>
+			</div>
+			<div class="col-md-5">
+				<get-object qvid="'mmJPW'" id="mmJPW" height="19" width="100" header="false"></get-object>
+				<get-object qvid="'PRZGjK'" id="PRZGjK" height="19" header="false"></get-object>
+			</div>
+			<div class="col-md-4 text-md-right radio-group">
+				<div class="v text-3"><strong>View by: </strong></div>
+				<div class="v text-3"><input type="radio" ng-model="type" ng-value="0" ng-change="selectType(0)"> Number of deals </div>
+				<div class="v text-3"><input type="radio" ng-model="type" ng-value="1" ng-change="selectType(1)"> Value of deals</div>
+			</div>
+		</div>
+		<div class="row" ng-if="tab==2">
+			<div class="col-md-3">
+				<span class="v title-4 color-gray">ALL OPPORTUNITIES BY PROBABILITY</span>
+			</div>
+			<div class="col-md-5">
+				<get-object qvid="'mmJPW'" id="mmJPW" height="19" width="100" header="false"></get-object>
+				<get-object qvid="'PRZGjK'" id="PRZGjK" height="19" header="false"></get-object>
+			</div>
+			<div class="col-md-4 text-md-right radio-group">
+				<div class="v text-3"><strong>View by: </strong></div>
+				<div class="v text-3"><input type="radio" ng-model="type" ng-value="0" ng-change="selectType(0)"> Number of deals </div>
+				<div class="v text-3"><input type="radio" ng-model="type" ng-value="1" ng-change="selectType(1)"> Value of deals</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<get-object qvid="chart[tab][type]" id="chart" height="300" header="false"></get-object>
+			</div>
+		</div>
+
+	</div>
+</section>
+<section id="submain">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<span class="v title-3 color-blue">OPPORTUNITY DETAILS</span>
+				<get-object qvid="'urntnJ'" id="urntnJ" height="300" header="false"></get-object>
+			</div>
+		</div>
+	</div>
+</section>

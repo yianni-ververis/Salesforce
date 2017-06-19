@@ -1,0 +1,64 @@
+<section id="main">
+	<div class="container">	
+		<div class="row filters hidden-sm-down">
+			<div class="col-md-12">
+				<drop-down dimension="'Account Billing Country'" id="Country" title="Countries" selected-on-title="true" multiple-selections="true" listen-to-selections="true" keep-open="true"></drop-down>
+				<drop-down dimension="'User Full Name'" id="Salespeople" title="All Sales People" selected-on-title="true" multiple-selections="true" listen-to-selections="true" keep-open="true"></drop-down>
+				<drop-down dimension="'Opportunity Type'" id="OppTypes" title="All Opp Types" selected-on-title="true" multiple-selections="true" listen-to-selections="true" keep-open="true"></drop-down>
+				<drop-down dimension="'Product Name'" id="Products" title="All Products" selected-on-title="true" multiple-selections="true" listen-to-selections="true" keep-open="true"></drop-down>
+				<get-object qvid="'mmJPW'" id="mmJPW2" height="19" width="100" header="false"></get-object>
+				<get-object qvid="'PRZGjK'" id="PRZGjK2" height="19" header="false"></get-object>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="v title-1 color-blue">SALESPERSON<div>
+			</div>
+		</div>
+		<div class="row no-margin-padding-top-bottom">
+			<div class="col-md-12 no-margin-padding-left-right padding-top-20">
+				<div class="v title-3 stack">
+					<span class="color-gray">TOTAL SALESPEOPLE:</span>
+					<kpi expression="num(Count(Distinct [User Id]),'###,###,###')"></kpi>
+				</div>
+				<div class="v title-3 stack">
+					<span class="color-gray">TOTAL CLOSED WON:</span>
+					<kpi expression="num(Sum({<[Opportunity Won/Lost]={'WON'}, [Opportunity Closed_Flag]={1}>} [Opportunity Amount]),'$###,###,###')"></kpi>
+				</div>
+				<div class="v title-3 stack">
+					<span class="color-gray">TOTAL CLOSED LOST:</span>
+					<kpi expression="num(Sum({<[Opportunity Won/Lost]={'LOST'}, [Opportunity Closed_Flag]={1}>} [Opportunity Amount]),'$###,###,###')"></kpi>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6 no-margin-padding-left padding-top-20">
+				<span class="v title-3 color-gray-light">AVG CLOSED VALUE PER OPP</span>
+				<get-object qvid="'WszuJy'" id="WszuJy" height="300" header="false"></get-object>
+			</div>
+			<div class="col-md-6 no-margin-padding-left padding-top-20">
+				<span class="v title-3 color-gray-light">AVG DAYS IN PIPELINE</span>
+				<get-object qvid="'ARJqBL'" id="ARJqBL" height="300" header="false"></get-object>
+			</div>
+		</div>	
+
+		<div class="row">
+			<div class="col-md-12 no-margin-padding-left padding-top-20">
+				<span class="v title-3 color-gray-light">CUSTOMERS, CLOSED REVENUE & WON OPPORTUNITIES</span>
+				<get-object qvid="'bCxmKa'" id="bCxmKa" height="500" header="false"></get-object>
+			</div>
+		</div>
+
+	</div>
+</section>
+<section id="submain">
+	<div class="container">	
+		<div class="row">
+			<div class="col-md-12">
+				<span class="v title-3 color-blue">SALESPERSON DETAILS</span>
+				<get-object qvid="'SzxxGj'" id="SzxxGj" height="300" header="false"></get-object>
+			</div>
+		</div>
+	</div>
+</section>

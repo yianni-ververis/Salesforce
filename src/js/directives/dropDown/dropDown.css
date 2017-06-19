@@ -1,0 +1,42 @@
+.drop-down-directive {
+  display: inline-block;
+}
+.drop-down-directive .btn-secondary {
+  border: 0;
+}
+.drop-down-directive .dropdown-menu {
+  min-width: 200px;
+}
+.drop-down-directive .dropdown-menu .open,
+.drop-down-directive .dropdown-menu .selected,
+.drop-down-directive .dropdown-menu .deselected {
+  -o-transition: .5s;
+  -ms-transition: .5s;
+  -moz-transition: .5s;
+  -webkit-transition: .5s;
+}
+.drop-down-directive .dropdown-menu .selected,
+.drop-down-directive .dropdown-menu .deselected:hover,
+.drop-down-directive .dropdown-menu .open:hover {
+  color: white;
+  background-color: #77b62a;
+}
+.drop-down-directive .dropdown-menu .selected:hover,
+.drop-down-directive .dropdown-menu .open {
+  color: black;
+  background-color: white;
+}
+.drop-down-directive .dropdown-menu .deselected {
+  color: black;
+  background-color: #DDDDDD;
+}
+.drop-down-directive .scrollable-menu {
+  height: auto;
+  overflow-x: hidden;
+  z-index: 9999999;
+  max-height: 200px;
+}
+.drop-down-directive .dropdown-item {
+  margin-bottom: 1px;
+}
+

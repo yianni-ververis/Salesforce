@@ -1,0 +1,129 @@
+<section id="subfooter">
+	<div class="container">
+		<div class="row no-margin-padding">
+			<div class="col-md-12 no-margin-padding text-md-center">
+				<div class="v title-3 stack">
+					<span class="color-gray">DAYS UNTIL CLOSE:</span>
+					<kpi expression="If(Floor($(vTodaysDate))=Num([Opportunity Close Date]), 1, Floor(Num(Avg({<[Opportunity Open_Flag]={1}, [Opportunity Close Quarter/Year]={'$(vCurrentQ)'}>} Floor(Num([Opportunity Close Date])-Num('3/12/2016'))), '#,###')))&' DAYS'"></kpi>
+				</div>
+				<div class="v title-3 stack">
+					<span class="color-gray">DEALS OPEN:</span>
+					<kpi expression="Sum({<[Opportunity Open_Flag]={1}, [Opportunity Close Quarter/Year]={'$(vCurrentQ)'}>} Opportunity_Count)"></kpi>
+				</div>
+				<div class="v title-3 stack">
+					<span class="color-gray">OPEN DEALS VALUE:</span>
+					<kpi expression="Num(Sum({<[Opportunity Open_Flag]={1}, [Opportunity Close Quarter/Year]={'$(vCurrentQ)'}>} [Opportunity Amount]),'$###,###,###.')"></kpi>
+				</div>
+				<div class="v title-3 stack">
+					<span class="color-gray">WIN RATE:</span>
+					<kpi expression="num(Sum({<[Opportunity Won/Lost] = {'WON'}, [Opportunity Close Quarter/Year]={'$(vCurrentQ)'}>} Opportunity_Count)	/Sum({<[Opportunity Is Closed?]={'true'}, [Opportunity Close Quarter/Year]={'$(vCurrentQ)'}>} Opportunity_Count), '##%')"></kpi>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="footer">
+	<div class="container">
+		<div class="row no-margin-padding">
+			<div class="col-md-12">
+				<div class="d-md-flex flex-md-row justify-content-between flex-xs-row justify-content-xs justify-content-xs-center">
+					<div class="p-1 brand text-md-left text-xs-center">
+						<div>SALESFORCE</div>
+					</div>
+					<div class="p-1 text-center">
+						<a class="nav-link" ng-class="{'active':page==='dashboard'}" ng-click="goTo('dashboard')">Dashboard</a>
+					</div>
+					<div class="p-1 text-center">
+						<a class="nav-link" ng-class="{'active':page==='opportunities'}" ng-click="goTo('opportunities')">Opportunities</a>
+					</div>
+					<div class="p-1 text-center">
+						<a class="nav-link" ng-class="{'active':page==='accounts'}" ng-click="goTo('accounts')">Accounts</a>
+					</div>
+					<div class="p-1 text-center">
+						<a class="nav-link" ng-class="{'active':page==='salesperson'}" ng-click="goTo('salesperson')">SalesPerson</a>
+					</div>
+					<div class="p-1 logo">
+						<img src="img/logo_footer_Qlik.png">
+					</div>
+				</div>
+			<!--<div class="col-md-12">
+				SALESFORCE
+			</div>
+			<div class="col-md text-md-center">
+				<ul class="flex-container space-between">
+					<li class="flex-item"><a class="nav-link" ng-class="{'active':page==='dashboard'}" ng-click="goTo('dashboard')">Dashboard</a></li>
+					<li class="flex-item"><a class="nav-link" ng-class="{'active':page==='opportunities'}" ng-click="goTo('opportunities')">Opportunities</a></li>
+					<li class="flex-item"><a class="nav-link" ng-class="{'active':page==='accounts'}" ng-click="goTo('accounts')">Accounts</a></li>
+					<li class="flex-item"><a class="nav-link" ng-class="{'active':page==='salesperson'}" ng-click="goTo('salesperson')">SalesPerson</a></li>
+				</ul>
+			</div>
+			<div class="col-md-2 text-md-right">
+				<img src="img/logo_footer_Qlik.png">
+			</div>-->
+		</div>
+	</div>
+</section>
+
+<section id="footer-filter">
+	<div class="container fixed-bottom hidden-md-up p-0">
+		<div class="row no-margin-padding">
+			<div class="col-6 text-center pt-3 a">
+				<a href="#filterModal" data-toggle="modal" data-target="" ng-click="modalToggle()">{{filterText}}</a>
+			</div>
+			<div class="col-6 text-center pt-3 b">
+				<a href="#" ng-click="clear()">CLEAR SELECTIONS</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header pb-2">
+				<h5 class="modal-title">FILTERS/SELECTIONS</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"  ng-click="modalToggle()">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body pt-3">
+				<div class="row">
+					<div class="col-md-12">
+						<get-selection-object data-data=""></get-selection-object>
+					</div>
+				</div>
+				<div class="row padding-bottom-20">
+					<div class="col-md-12">
+						<get-object qvid="'aPyjXc'" height="200" interaction="true" header="true"></get-object>
+					</div>
+				</div>
+				<div class="row padding-bottom-20">
+					<div class="col-md-12">
+						<get-object qvid="'npmECd'" height="200" interaction="true" header="true"></get-object>
+					</div>
+				</div>
+				<div class="row padding-bottom-20">
+					<div class="col-md-12">
+						<get-object qvid="'ugSeY'" height="200" interaction="true" header="true"></get-object>
+					</div>
+				</div>
+				<div class="row padding-bottom-20">
+					<div class="col-md-12">
+						<get-object qvid="'TBTfqru'" height="200" interaction="true" header="true"></get-object>
+					</div>
+				</div>
+				<div class="row padding-bottom-20" ng-if="page==='accounts' || page==='salesperson'">
+					<div class="col-md-12">
+						<get-object qvid="'cYCU'" height="120" interaction="true" header="true"></get-object>
+					</div>
+				</div><div class="row" ng-if="page==='accounts' || page==='salesperson'">
+					<div class="col-md-12">
+						<get-object qvid="'AqFV'" height="200" interaction="true" header="true"></get-object>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

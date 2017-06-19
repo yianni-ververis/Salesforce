@@ -1,0 +1,121 @@
+<section id="main">
+	<div class="container">	
+		<div class="row filters  hidden-sm-down">
+			<div class="col-md-10">
+				<drop-down dimension="'Account Billing Country'" id="Country" title="Countries" selected-on-title="true" multiple-selections="true" listen-to-selections="true" keep-open="true"></drop-down>
+				<drop-down dimension="'User Full Name'" id="Salespeople" title="All Sales People" selected-on-title="true" multiple-selections="true" listen-to-selections="true" keep-open="true"></drop-down>
+				<drop-down dimension="'Opportunity Type'" id="OppTypes" title="All Opp Types" selected-on-title="true" multiple-selections="true" listen-to-selections="true" keep-open="true"></drop-down>
+				<drop-down dimension="'Product Name'" id="Products" title="All Products" selected-on-title="true" multiple-selections="true" listen-to-selections="true" keep-open="true"></drop-down>
+			</div>
+			<div class="col-md-2 text-right no-margin-padding">
+				<span class="v text-3 color-gray">Today's date: 3/12/2016</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="v title-1 color-blue">Dashboard</div>
+			</div>
+		</div>
+		<div class="row border-bottom padding-bottom-10">
+			<div class="col-md-12">
+				<span class="v title-3 color-gray">OPEN OPPS VALUE:</span>
+				<span class="v title-2">$<kpi expression="num(Sum({<[Opportunity Open_Flag]={1}, [Opportunity Close Quarter/Year]={'$(vCurrentQ)'}>} [Opportunity Amount]),'#,##0')"></kpi> </span>
+			</div>
+		</div>
+
+		<div class="row padding-top-20">
+			<div class="col-md-12">
+				<div class="v title-3 stack">
+					<span class="color-blue">OPEN OPPS:</span>
+					<kpi expression="Sum({<[Opportunity Open_Flag]={1}, [Opportunity Close Quarter/Year]={'$(vCurrentQ)'}>} Opportunity_Count)"></kpi>
+				</div>
+				<div class="v title-4 stack">
+					<span class="color-gray">NEW CUSTOMERS:</span>
+					<kpi expression="Sum({<[Opportunity Open_Flag]={1}, [Opportunity Type]={'New Customer'}, [Opportunity Close Quarter/Year]={'$(vCurrentQ)'}>} Opportunity_Count)"></kpi>
+				</div>
+				<div class="v title-4 stack">
+					<span class="color-gray">EXISTING CUSTOMERS:</span>
+					<kpi expression="Sum({<[Opportunity Open_Flag]={1}, [Opportunity Type]={'Existing Customer'}, [Opportunity Close Quarter/Year]={'$(vCurrentQ)'}>} Opportunity_Count)"></kpi>
+				</div>
+				<div class="v title-3 color-gray-dark stack hidden-sm-down"> | </div>
+				<div class="v title-3 color-blue stack">
+					WIN RATE:
+					<kpi expression="num(Sum({<[Opportunity Won/Lost] = {'WON'}, [Opportunity Close Quarter/Year]={'$(vCurrentQ)'}>} Opportunity_Count)	/Sum({<[Opportunity Is Closed?]={'true'}, [Opportunity Close Quarter/Year]={'$(vCurrentQ)'}>} Opportunity_Count), '##%')"></kpi>
+				</div>
+				<div class="v title-4 color-gray stack">22% WR THIS TIME LAST YEAR</div>
+			</div>
+		</div>
+
+		<div class="row no-margin-padding-top-bottom">
+			<div class="col-md-12">
+				<span class="v title-3 color-blue">PIPELINE</span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-3 left-box padding-top-20">
+				<span class="v title-4 color-gray">PREVIOUS QUARTER</span>
+				<get-object qvid="'DJGBLk'" height="300" header="false"></get-object>
+				<span class="v title-6 color-gray-light"> TOP 3 CLOSED DEALS </span>
+				<get-object qvid="'TbsjVw'" id="TbsjVw" height="100" header="false" table-header="false"></get-object>
+			</div>
+			<div class="col-md-6 center-box padding-top-20">
+				<span class="v title-3 color-gray-dark">CURRENT QUARTER</span>
+				<div class="row">
+					<div class="col-md-12">
+						<get-object qvid="'XgwSScW'" height="300" header="false"></get-object>
+					</div>
+					<div class="col-md-6">
+						<span class="v title-6 color-gray-light"> TOP 3 CLOSED DEALS </span>
+						<get-object qvid="'FQmfc'"	id="FQmfc" height="100" header="false" table-header="false"></get-object>
+					</div>
+					<div class="col-md-6">	
+						<span class="v title-6 color-gray-light"> TOP 3 PENDING DEALS </span>
+						<get-object qvid="'BNWKM'" id="BNWKM" height="100" header="false" table-header="false"></get-object>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 right-box padding-top-20">
+				<span class="v title-4 color-gray">NEXT QUARTER FORECAST</span>
+				<get-object qvid="'wSDfSK'" height="300" header="false"></get-object>
+				<span class="v title-6 color-gray-light"> TOP 3 PENDING DEALS </span>
+				<get-object qvid="'dvngV'" id="dvngV" height="100" header="false" table-header="false"></get-object>
+			</div>
+		</div>
+
+		<div class="row row-padding">
+			<div class="col-md-12">
+				<span class="v title-4 color-gray-dark">CURRENT QUARTER OPPORTUNITIES BY STAGE</span>
+				<a href ng-click="goTo('opportunities')">View all Pipeline Details</a>
+			</div>
+			<div class="col-md-8 border-right">
+				<get-object qvid="'jVfqq'" height="300" header="false"></get-object>
+			</div>
+			<div class="col-md-4">
+				<get-object qvid="'JqgxTj'" height="300" header="false"></get-object>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="submain">
+	<div class="container">	
+		<div class="row no-margin-padding">
+			<div class="col-md-12">
+				<span class="v title-3 color-blue">TAKE ACTION</span>
+				<span class="v title-4">opportunities in the Prove Value of Negotiating stages</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 padding-top-20">
+				<span class="v title-4">TOP OPEN OPPS WITH PROSPECTS</span>
+				<a href ng-click="goTo('opportunities')">View all Open Opps</a>
+				<get-object qvid="'dYasj'" id="dYasj" height="200" header="false"></get-object>
+			</div>
+			<div class="col-md-6 padding-top-20">
+				<span class="v title-4">TOP OPEN OPPS WITH EXISTING CUSTOMERS</span>
+				<a href ng-click="goTo('opportunities')">View all Open Opps</a>
+				<get-object qvid="'FQgzH'" id="FQgzH" height="200" header="false"></get-object>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,30 @@
+<div class="drop-down-directive dropdown">
+	<a class="btn btn-secondary dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		{{currentItem.qText}} <span class="caret"></span>
+	</a>
+	<div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuLink">
+		<div ng-repeat="item in items">
+			<a ng-click="dropDownChangeTitle(item[0])" class="dropdown-item" ng-class="{'selected' : currentItem.qElemNumber==item[0].qElemNumber || item[0].qState==='S', 'deselected' : item[0].qState==='X', 'open' : item[0].qState==='O'}">{{item[0].qText}}</a>
+		</div>
+	</div>
+</div>
+
+<!--<div class="drop-down-directive dropdown">
+	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		{{currentItem.qText}}
+	</button>
+	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		<a  ng-repeat="item in items" class="dropdown-item" href="#" ng-click="dropDownChangeTitle(item[0])" class="dropdown-item" ng-class="{'selected' : currentItem.qElemNumber==item[0].qElemNumber || item[0].qState==='S', 'deselected' : item[0].qState==='X', 'open' : item[0].qState==='O'}">Action</a>
+	</div>
+</div>-->
+
+<!--<div class="drop-down-directive dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-click="openmenu()">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>-->

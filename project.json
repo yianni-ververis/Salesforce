@@ -1,0 +1,45 @@
+{
+	"title": "Salesforce",
+	"name": "salesforce",
+	"version": "1.0",
+	"dist": "dist/",
+	"ga": "UA-XXXXXXXX-XX",
+	"local": {
+		"host": "http://localhost:4848",
+		"port": 4848,
+		"id": "Salesforce_Mashup_Demo_Team.qvf",
+		"scriptsUrl": "http://localhost:3000/",
+		"baseUrl": "http://localhost:4848/resources",
+		"baseHref": "/index.html#"
+	},
+	"local2": {
+		"host": "your-sense-host.com",
+		"port": 443,
+		"id": "",
+		"scriptsUrl": "http://localhost:3000/",
+		"baseUrl": "https://your-sense-host.com/resources",
+		"baseHref": "/index.html#"
+	},
+	"server": {},
+	"url": null,
+	"pages": [
+		"dashboard",
+		"opportunities",
+		"accounts",
+		"salesperson"
+	],
+	"tasksDefault": [
+		"vendor",
+		"controllers",
+		"services",
+		"directives",
+		"lib",
+		"vendor-css",
+		"client-css",
+		"html",
+		"img"
+	],
+	"controllers": [],
+	"directives": [],
+	"services": []
+}

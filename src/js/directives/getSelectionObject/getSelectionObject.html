@@ -1,0 +1,34 @@
+<div class="get-selection-object"> 
+	<ul class="d-flex flex-column flex-md-row">  
+		<li><strong>SELECTIONS: </strong></li>  
+		<li ng-if="!selections.length" class="no-selections">None</li>  
+		<li ng-repeat="item in selections" class="d-flex flex-column flex-md-row">
+			<div ng-if="item.selected.length==1">
+				<span>{{item.field}}: {{item.selected[0]}}</span>
+				<button type="button" class="close" aria-label="Close" ng-click="clearField(item.field)"> 
+					<span aria-hidden="true"> &times;</span> 
+				</button> 
+			</div>
+			<div ng-if="item.selected.length>1" class="hidden-md-up">
+				<span>{{item.field}} : {{item.selected.length}} of {{item.total}}</span>
+				<button type="button" class="close" aria-label="Close" ng-click="clearField(item.field)" ng-if="item.selected.length>1" > 
+					<span aria-hidden="true"> &times;</span> 
+				</button> 
+			</div>
+			<div class="dropdown hidden-sm-down" ng-if="item.selected.length>1">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					{{item.field}} : {{item.selected.length}} of {{item.total}}
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<span class="dropdown-item" ng-repeat="multipleSubItem in item.selected">
+						{{multipleSubItem.qName}}
+						<button type="button" class="close" aria-label="Close" ng-click="clearFieldItem(item.field, multipleSubItem.qName)"> 
+							<span aria-hidden="true">&times;</span> 
+						</button> 
+					</span>
+				</div>
+			</div>
+		</li>
+		<li class="clear" ng-show="selectedFields.length && !isMobile"><a ng-click="clearAll()">Clear All</a></li>  
+	</ul>  
+</div>  

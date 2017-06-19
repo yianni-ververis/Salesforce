@@ -1,0 +1,43 @@
+<section class="border-bottom">
+	<div class="container" id="top-nav">
+		<nav class="navbar navbar-toggleable-md navbar-light bg-faded p-0">
+			<a class="navbar-brand" href="#">
+				<div class="image"><img src="img/icon---cloud_isolated.png"></div>
+				<div class="text">Salesforce</div>
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+			</a>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item" ng-class="{'active':page==='dashboard'}" >
+						<a class="nav-link" ng-click="goTo('dashboard')" data-toggle="collapse" data-target=".navbar-collapse">Dashboard <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item" ng-class="{'active':page==='opportunities'}">
+						<a class="nav-link" ng-click="goTo('opportunities')" data-toggle="collapse" data-target=".navbar-collapse">Opportunities</a>
+					</li>
+					<li class="nav-item" ng-class="{'active':page==='accounts'}">
+						<a class="nav-link" ng-click="goTo('accounts')" data-toggle="collapse" data-target=".navbar-collapse">Accounts</a>
+					</li>
+					<li class="nav-item" ng-class="{'active':page==='salesperson'}">
+						<a class="nav-link" ng-click="goTo('salesperson')" data-toggle="collapse" data-target=".navbar-collapse">SalesPerson</a>
+					</li>
+				</ul>
+				<!--<form class="form-inline my-2 my-lg-0">
+					<input class="form-control mr-sm-2" type="text" placeholder="Search">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				</form>-->
+			</div>
+		</nav>
+	</div>
+</section>
+<section>
+	<div class="container hidden-sm-down">		
+		<div class="row no-margin-padding border-bottom">
+			<div class="col-md-12">
+				<get-selection-object data-data=""></get-selection-object>
+			</div>
+		</div>
+	</div>
+</section>
