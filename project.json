@@ -3,7 +3,7 @@
 	"name": "salesforce",
 	"version": "1.0",
 	"dist": "dist/",
-	"ga": "UA-XXXXXXXX-XX",
+	"ga": "UA-67745380-39",
 	"local": {
 		"host": "http://localhost:4848",
 		"port": 4848,
